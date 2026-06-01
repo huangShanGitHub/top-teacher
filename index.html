@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>海象名师资源库 - 国际课程名师精准匹配</title>
+  <style>
+    :root {
+      --primary: #1677ff;
+      --primary-dark: #0958d9;
+      --accent: #00b578;
+      --warning: #ff7a00;
+      --danger: #f5222d;
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface-soft: #f0f5ff;
+      --text: #172033;
+      --muted: #697386;
+      --line: #e6ebf2;
+      --shadow: 0 18px 50px rgba(23, 32, 51, 0.1);
+      --radius: 8px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; border: 0; }
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .menu a:hover { color: var(--primary); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 0 20px;
+      border-radius: var(--radius);
+      font-weight: 700;
+      transition: 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(22, 119, 255, 0.24);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: #fff;
+      color: var(--primary);
+      border: 1px solid rgba(22, 119, 255, 0.25);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(246, 248, 251, 0.96) 0%, rgba(246, 248, 251, 0.86) 48%, rgba(246, 248, 251, 0.4) 100%),
+        url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1800&q=80") center/cover;
+      min-height: 680px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 44px;
+      align-items: center;
+      padding: 76px 0 58px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(22, 119, 255, 0.1);
+      color: var(--primary-dark);
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(36px, 5vw, 62px);
+      line-height: 1.08;
+      max-width: 720px;
+    }
+
+    .hero-sub {
+      margin: 20px 0 30px;
+      font-size: 22px;
+      color: #3c485c;
+      font-weight: 700;
+    }
+
+    .search-box {
+      display: flex;
+      width: min(680px, 100%);
+      padding: 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .search-box input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      padding: 0 16px;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 28px;
+      max-width: 640px;
+    }
+
+    .trust-item {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 26px;
+      line-height: 1.1;
+    }
+
+    .trust-item span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-panel {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .panel-title {
+      margin: 0 0 16px;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .live-match { display: grid; gap: 12px; }
+
+    .match-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px;
+      background: #f9fbff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .match-row b { display: block; }
+    .match-row small { color: var(--muted); }
+
+    .status {
+      color: var(--accent);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    section { padding: 76px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.2;
+    }
+
+    .section-head p {
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .cases, .teacher-grid, .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .case-card, .teacher-card, .price-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 28px rgba(23, 32, 51, 0.06);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .case-card:hover, .teacher-card:hover, .price-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-color: rgba(22, 119, 255, 0.32);
+    }
+
+    .case-card { padding: 26px; }
+
+    .case-result {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .case-card h3 {
+      margin: 0 0 8px;
+      font-size: 20px;
+    }
+
+    .case-card p { margin: 0; color: var(--muted); }
+
+    .teachers-wrap {
+      background: #fff;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .teacher-tools {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .teacher-tools input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 0 16px;
+      outline: 0;
+      background: #fff;
+    }
+
+    .teacher-tools input:focus,
+    .form-field input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(22, 119, 255, 0.1);
+    }
+
+    .teacher-card {
+      padding: 22px;
+      cursor: pointer;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .teacher-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .avatar {
+      width: 54px;
+      height: 54px;
+      border-radius: 8px;
+      background: var(--surface-soft);
+      color: var(--primary-dark);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+
+    .teacher-card h3 {
+      margin: 0;
+      font-size: 21px;
+    }
+
+    .teacher-card p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: #eef5ff;
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .tag-hot {
+      background: rgba(255, 122, 0, 0.11);
+      color: #b84f00;
+    }
+
+    .teacher-foot {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .score {
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .price-card {
+      padding: 28px;
+      position: relative;
+    }
+
+    .price-card.featured {
+      border-color: rgba(22, 119, 255, 0.45);
+      box-shadow: var(--shadow);
+    }
+
+    .badge {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .price-card h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+
+    .price {
+      margin: 0 0 18px;
+      font-size: 34px;
+      font-weight: 900;
+    }
+
+    .price span {
+      font-size: 15px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+      display: grid;
+      gap: 10px;
+      color: #3c485c;
+    }
+
+    .features li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: 900;
+      margin-right: 8px;
+    }
+
+    .join {
+      padding: 0;
+      background: #0f1f3a;
+      color: #fff;
+    }
+
+    .join-inner {
+      min-height: 280px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .join h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 46px);
+    }
+
+    .join p {
+      margin: 12px 0 0;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 18px;
+    }
+
+    .footer {
+      padding: 34px 0;
+      color: var(--muted);
+      font-size: 14px;
+      background: #fff;
+      border-top: 1px solid var(--line);
+    }
+
+    .modal-mask {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: rgba(10, 18, 32, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-mask.active { display: flex; }
+
+    .modal {
+      width: min(560px, 100%);
+      max-height: min(86vh, 760px);
+      overflow: auto;
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+      animation: pop 0.18s ease;
+    }
+
+    @keyframes pop {
+      from { transform: translateY(8px) scale(0.98); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .modal-head {
+      padding: 22px 24px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      gap: 18px;
+    }
+
+    .modal-head h3 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .close {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius);
+      background: #f2f5f9;
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .modal-body { padding: 24px; }
+    .detail-block { margin-bottom: 20px; }
+
+    .detail-block h4 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .detail-block p {
+      margin: 0;
+      color: #3c485c;
+    }
+
+    .modal-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .form-field { margin-bottom: 14px; }
+
+    .form-field label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 700;
+    }
+
+    .form-field input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 0 14px;
+      outline: 0;
+    }
+
+    .error {
+      min-height: 22px;
+      color: var(--danger);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .success-note {
+      display: none;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      border-radius: var(--radius);
+      background: rgba(0, 181, 120, 0.1);
+      color: #087a53;
+      font-weight: 700;
+    }
+
+    .success-note.active { display: block; }
+
+    .pay-amount {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin: 6px 0 18px;
+    }
+
+    .pay-amount strong {
+      font-size: 44px;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .empty {
+      display: none;
+      padding: 28px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+    }
+
+    .empty.active { display: block; }
+
+    @media (max-width: 900px) {
+      .menu { display: none; }
+      .hero { min-height: auto; }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        padding: 56px 0 44px;
+      }
+      .hero-panel { display: none; }
+      .cases, .teacher-grid, .pricing { grid-template-columns: 1fr; }
+      .join-inner {
+        grid-template-columns: 1fr;
+        padding: 54px 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(100% - 28px, var(--max)); }
+      .nav-inner { height: 64px; }
+      .logo { font-size: 17px; }
+      .logo-mark { width: 32px; height: 32px; }
+      .nav .btn {
+        min-height: 38px;
+        padding: 0 12px;
+        font-size: 14px;
+      }
+      .hero-sub { font-size: 17px; }
+      .search-box {
+        display: grid;
+        gap: 8px;
+      }
+      .search-box input { min-height: 46px; }
+      .trust-row { grid-template-columns: 1fr; }
+      .section-head { display: block; }
+      .teacher-tools { display: grid; }
+      .modal-actions { grid-template-columns: 1fr; }
+      .modal-head, .modal-body { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="logo" href="#">
+        <span class="logo-mark">海</span>
+        <span>海象名师资源库</span>
+      </a>
+      <nav class="menu">
+        <a href="#teachers">找名师</a>
+        <a href="#join">成为名师</a>
+        <a href="#pricing">收费</a>
+        <a href="#contact">联系我们</a>
+      </nav>
+      <button class="btn btn-primary" data-lead="立即匹配">立即匹配</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">高分案例优先匹配 · 免费初筛</div>
+          <h1>帮你找到真正能提分的国际课程名师</h1>
+          <p class="hero-sub">AP / IB / A-Level / DSE / 雅思托福</p>
+          <div class="search-box">
+            <input id="heroSearch" type="search" placeholder="输入课程关键词，如 IB 数学、雅思、A-Level 经济" />
+            <button class="btn btn-primary" id="heroSearchBtn">免费匹配名师</button>
+          </div>
+          <div class="trust-row">
+            <div class="trust-item"><strong>2000+</strong><span>累计服务学生</span></div>
+            <div class="trust-item"><strong id="heroTeacherCount">22</strong><span>已录入名师</span></div>
+            <div class="trust-item"><strong>提分案例</strong><span>按课程目标匹配</span></div>
+          </div>
+        </div>
+        <aside class="hero-panel">
+          <p class="panel-title">今日正在匹配</p>
+          <div class="live-match">
+            <div class="match-row"><div><b>IB Math AA HL</b><small>目标 5 → 7，上海学生</small></div><span class="status">已接入</span></div>
+            <div class="match-row"><div><b>IELTS Speaking</b><small>目标 6 → 7.5，深圳学生</small></div><span class="status">匹配中</span></div>
+            <div class="match-row"><div><b>A-Level Economics</b><small>目标 B → A*，北京学生</small></div><span class="status">已推荐</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>真实提分案例</h2>
+            <p>优先推荐有同课程、同目标、同基础案例的老师。</p>
+          </div>
+        </div>
+        <div class="cases">
+          <article class="case-card"><div class="case-result">IB 4 → 7</div><h3>数学 AA HL 8周冲刺</h3><p>重建知识框架，针对 Paper 3 和 IA 薄弱点专项提升。</p></article>
+          <article class="case-card"><div class="case-result">雅思 6 → 7.5</div><h3>口语写作双线提分</h3><p>考官维度拆解表达、逻辑和评分项，6周完成突破。</p></article>
+          <article class="case-card"><div class="case-result">A-Level B → A*</div><h3>经济学高频题型训练</h3><p>用评分标准反推答案结构，补齐 essay 和 diagram 表达。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="teachers" class="teachers-wrap">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>已录入深圳 / 香港线下名师</h2>
+            <p>你提供的老师已直接添加到资源库，点击卡片查看成绩案例、教学经验和可咨询方式。</p>
+          </div>
+        </div>
+        <div class="teacher-tools">
+          <input id="teacherSearch" type="search" placeholder="搜索课程、老师、城市、标签，如 深圳、香港、DSE、A-Level、化学、心理学" />
+          <button class="btn btn-primary" data-lead="找名师">快速留资</button>
+        </div>
+        <div class="teacher-grid" id="teacherGrid"></div>
+        <div class="empty" id="emptyState">暂无匹配老师，留下微信后由顾问人工匹配。</div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>收费方案</h2>
+            <p>从免费初筛到精准匹配，按你的升学目标选择。</p>
+          </div>
+        </div>
+        <div class="pricing">
+          <article class="price-card">
+            <h3>免费匹配</h3>
+            <p class="price">￥0 <span>/ 次</span></p>
+            <ul class="features"><li>基础课程需求诊断</li><li>推荐方向建议</li><li>顾问微信沟通</li></ul>
+            <button class="btn btn-ghost" data-lead="免费匹配">免费匹配</button>
+          </article>
+          <article class="price-card featured">
+            <span class="badge">转化最高</span>
+            <h3>精准匹配</h3>
+            <p class="price">￥499 <span>/ 次</span></p>
+            <ul class="features"><li>推荐 3 位适配老师</li><li>定制提分方案</li><li>优先锁定试听档期</li></ul>
+            <button class="btn btn-primary" data-lead="精准匹配">立即精准匹配</button>
+          </article>
+          <article class="price-card">
+            <h3>机构合作</h3>
+            <p class="price">￥10000 <span>/ 年</span></p>
+            <ul class="features"><li>高端师资资源池</li><li>课程项目联合交付</li><li>专属合作顾问</li></ul>
+            <button class="btn btn-ghost" data-lead="机构合作">联系合作</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="join" class="join">
+      <div class="container join-inner">
+        <div>
+          <h2>成为名师</h2>
+          <p>入驻海象名师资源库，获取更匹配、更高端、更稳定的国际课程生源。</p>
+        </div>
+        <button class="btn btn-primary" data-lead="名师入驻">申请入驻</button>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="footer">
+    <div class="container">© 2026 海象名师资源库 · 国际课程名师精准匹配平台</div>
+  </footer>
+
+  <div class="modal-mask" id="teacherModal">
+    <div class="modal">
+      <div class="modal-head">
+        <div><h3 id="modalTeacherName"></h3><div class="tags" id="modalTeacherTags"></div></div>
+        <button class="close" data-close>×</button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-block"><h4>成绩案例</h4><p id="modalCases"></p></div>
+        <div class="detail-block"><h4>教学经验</h4><p id="modalExperience"></p></div>
+        <div class="modal-actions">
+          <button class="btn btn-primary" data-lead="立即咨询">立即咨询（免费）</button>
+          <button class="btn btn-ghost" id="unlockBtn">解锁联系方式（￥199）</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-mask" id="leadModal">
+    <div class="modal">
+      <div class="modal-head">
+        <div><h3>留下联系方式</h3><p style="margin:6px 0 0;color:var(--muted);">顾问将根据课程目标推荐适配名师。</p></div>
+        <button class="close" data-close>×</button>
+      </div>
+      <div class="modal-body">
+        <div class="success-note" id="successNote">提交成功，顾问会尽快联系你。</div>
+        <form id="leadForm" novalidate>
+          <div class="form-field"><label for="wechat">微信</label><input id="wechat" type="text" placeholder="请输入微信号" /><div class="error" id="wechatError"></div></div>
+          <div class="form-field"><label for="phone">手机</label><input id="phone" type="tel" placeholder="请输入手机号" /><div class="error" id="phoneError"></div></div>
+          <button class="btn btn-primary" type="submit" style="width:100%;">提交匹配需求</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-mask" id="payModal">
+    <div class="modal">
+      <div class="modal-head">
+        <div><h3>解锁名师联系方式</h3><p style="margin:6px 0 0;color:var(--muted);">支付成功后继续留下联系方式。</p></div>
+        <button class="close" data-close>×</button>
+      </div>
+      <div class="modal-body">
+        <div class="pay-amount"><strong>￥199</strong><span>单次解锁</span></div>
+        <button class="btn btn-primary" id="mockPayBtn" style="width:100%;">模拟支付</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const teachers = [
+      { name: "刘老师", initial: "刘", subject: "深圳线下 · DSE / A-Level / IB / AP / IGCSE 人文语言", tags: ["香港教育大学", "500+小时", "100+学生"], scarcity: "深圳线下可约", cases: "累计辅导学生超100人，覆盖DSE、A-Level、IB、AP、IGCSE等主流国际课程，擅长中文、英文、世界历史与英文A语言文学。", experience: "拥有5年国际教育一线教学与课程开发经验，深度掌握多体系教学大纲、考评标准与提分策略；可为贝赛思等名校2-7年级学生做学科衔接与先修辅导。" },
+      { name: "Arya黄老师", initial: "黄", subject: "深圳线下 · A-Level / 国际心理学", tags: ["港中文硕士", "A率80%", "剑桥面邀"], scarcity: "心理学稀缺名师", cases: "深国交学生国际考A率80%，其中A*率60%；2023-2024一位学生获得AS心理学年级前三，2024-2025三位学生获得心理学剑桥面邀。", experience: "本科应用心理学，硕士毕业于香港中文大学教育心理学专业，擅长国际课程心理学考试、学术表达和面试方向辅导。" },
+      { name: "林老师", initial: "林", subject: "香港线下 · DSE中文 / 中国历史 / 地理", tags: ["DSE中史5**", "中文5", "港八案例"], scarcity: "香港线下可约", cases: "一年内已带20+学生；曾帮助20多名学生在香港DSE考试中取得优异成绩并考入香港八大高校。", experience: "香港浸会大学历史学本科，主修中国历史。已自编完整中国历史、中文教材笔记，擅长补底拔尖、普通话/粤语/英语授课。" },
+      { name: "石老师", initial: "石", subject: "深圳线下 · A-Level / AP / IB / DSE 化学", tags: ["10000+小时", "化学组长", "竞赛强"], scarcity: "高分化学名师", cases: "IB 5分以上学生超过90%，A-Level A*率超过89%，AP 4/5分学员超过83%；近5年指导50+学生在CCC、USNCO中获奖。", experience: "头部教育机构化学组组长/学科带头人，从事国际教育8年，累计授课超过10000小时，擅长CCC、UKChO、USNCO及A-Level/AP/IB/DSE化学。" },
+      { name: "Arvin老师", initial: "A", subject: "深圳福田/南山 · 数学 / 物理 / 化学 / 生物", tags: ["牛津本硕", "A率70%+", "牛剑入学"], scarcity: "福田南山可线下", cases: "学生竞赛Pass率80%，英文测试和面试通过率100%；A-Level科学学生平均提分2-3个等级，所带班级A率约70%-72%。", experience: "牛津大学本硕材料科学专业，6年独立教学经验，熟悉A-Level、IB、美高、AMC、CCC、BBO、牛剑入学、高数、英文写作等课程。" },
+      { name: "Flora老师", initial: "F", subject: "深圳线下 · 雅思听说读写", tags: ["UCL硕士", "阅读听力9", "1000+小时"], scarcity: "雅思全科可约", cases: "阅读与听力单项7分率超过90%，总分6.5以上学生占比超85%；基础薄弱学生1个半月从4分提升至5.5，阅读课后5.5提升至6.5。", experience: "华威大学经济学本科、伦敦大学学院硕士，雅思阅读9分、听力9分、口语7分、写作7分，适合雅思全科提分。" },
+      { name: "Michelle肖老师", initial: "肖", subject: "深圳线下 · 雅思 / 托福口语听力", tags: ["口语8.0", "听力8.5", "TESOL"], scarcity: "口语听力专项", cases: "曾用8小时课时帮助学生口语从5.5提升至7.0。", experience: "多伦多大学荣誉文硕士，持TESOL教学证书，有加拿大15年以上生活和学习经历，可全英文授课，擅长地道表达与口听专项突破。" },
+      { name: "Haley老师", initial: "H", subject: "深圳线下 · 经济学 / 数学", tags: ["港中文硕士", "AP 5分率85%+", "2000+小时"], scarcity: "经济数学热门", cases: "超过90%的学生校内成绩在一个月内提升10%-30%；AP经济/微积分5分率超过85%，AP数学5分及以上占比超80%。", experience: "西南财经大学会计学大数据实验班学士，香港中文大学会计理学硕士。熟悉AP、A-Level、DSE、OSSD，主授经济学与数学，覆盖Edexcel、CAIE等考局。" },
+      { name: "清野老师", initial: "清", subject: "香港线下 · A-Level / IB / IGCSE 数学物理", tags: ["港中文工程", "Dean's List", "金牌导师"], scarcity: "香港线下可约", cases: "累计辅导100余名数学学生，成功帮助30余名学生实现显著突破，覆盖Band 1A尖子生与基础薄弱学生。", experience: "香港中文大学机械与自动化工程学系，工程学院Elite Stream，香港本土知名教育机构合作数学金牌导师，精通CIE、Edexcel命题规律。" },
+      { name: "Ricky老师", initial: "R", subject: "香港线下 · DSE中文 / IB中文", tags: ["中大历史系", "中文5*", "作文5**"], scarcity: "中文高分导师", cases: "DSE中文5*，阅读5*、作文5**；大学开始教授香港高中语文，具备线上线下、一对一及小组课经验。", experience: "香港中文大学历史系背景，擅长DSE中文阅读、作文及IB中文方向辅导。" },
+      { name: "李老师", initial: "李", subject: "深圳线下 · DSE英文 / A-Level / IGCSE / IB / AP", tags: ["港大毕业", "15年经验", "千人案例"], scarcity: "资深英文名师", cases: "学生时期曾在相关考试中获得5**/A*/9分最高成绩，已帮助逾千名学生取得优异成绩。", experience: "香港大学毕业，拥有15年大学、HKDSE、A-Level、IGCSE、IB及AP课程教学经验，适合英文高分与体系化提分。" },
+      { name: "Fu老师", initial: "F", subject: "深圳线下 · DSE公社 / 化学 / 生物", tags: ["港中文", "40+学生", "粤普英"], scarcity: "DSE理科可约", cases: "五年私补经验，曾帮助40+学生取得满意成绩；曾任Band 1学校校友班导师、大湾区DSE学校课后辅导班老师、DSE机构老师。", experience: "香港中文大学计量金融系本科，语言覆盖粤语、普通话、英语；可授初中全科、高中中文、公社、化学、生物，擅长个人化课件和教学大纲。" },
+      { name: "卢老师", initial: "卢", subject: "香港线下 · DSE / IB / A-Level 数学物理化学", tags: ["DSE数学5**", "M2 5**", "科大助教"], scarcity: "理科全科稀缺", cases: "DSE数学必修及M2均获5**，物理、化学Level 5或以上；大学7个理学院课程获满绩A+。", experience: "香港科技大学国际科研四年级，主修数学高级纯数学。曾任香港科技大学数学助教及数学指导中心导师，自制系统化专项笔记，提供课后答疑。" },
+      { name: "Helen老师", initial: "H", subject: "香港线下 · DSE中文 / 中文启蒙", tags: ["3600+小时", "好评99%", "普通话二甲"], scarcity: "中文耐心型导师", cases: "拥有3年中文教学经验，学生及家长好评率达99%，线上累计授课时长超3600小时。", experience: "暨南大学汉语言专业学士，持普通话二甲证书，性格温柔细心，注重互动反馈，适合DSE中文及低龄中文学习。" },
+      { name: "Polly老师", initial: "P", subject: "香港线下 · DSE中文 / 数学 / M2", tags: ["DSE中文5*", "M2 Level 5", "粤语教学"], scarcity: "港校方向可约", cases: "DSE中文5*，数学及数学延伸单元二Level 5；学生主要为DSE考生及内地转港插班生。", experience: "香港理工大学商学院市场营销及辅修金融背景，有DSE中文、英文、数学、M2粤语教学经验。" },
+      { name: "Kate老师", initial: "K", subject: "香港线下 · 数学 / 物理", tags: ["港大工程", "A/A*案例", "练习体系"], scarcity: "女导师可约", cases: "多年补习数学物理经验，覆盖国际学校和本地名校，学生曾在Math、Physics取得A/A*成绩。", experience: "香港大学工程系女导师，曾获Dean's Honor List，可提供配套练习，适合数学物理补底和拔高。" },
+      { name: "CC老师", initial: "C", subject: "香港线下 · DSE化学 / 物理", tags: ["DSE Best5 28", "化学5*", "物理5*"], scarcity: "沙田红磡大埔可约", cases: "2024 DSE考生Best5 28分，化学和物理Level 5*。", experience: "现就读香港理工大学职业治疗科Year 2，可流利广东话/普通话授课，提供笔记、课后问答，并根据学生能力调节课程难度。" },
+      { name: "Anan老师", initial: "A", subject: "深圳线下 · A-Level / DSE / IG 数学物理", tags: ["9年经验", "AMC竞赛", "贝赛思学生"], scarcity: "深圳可线下", cases: "带过贝赛思2-7年级学生、AMC8/10/12学生，以及新加坡A-Level、葡萄牙、英国本土、IB/O-Level、澳门学生。", experience: "本科西安电子科技大学毕业，从事教育工作近9年，熟悉DSE、IG、A-Level体系；擅长CIE、Edexcel、AQA数学及物理。" },
+      { name: "Davy老师", initial: "D", subject: "数学 / 物理 / 金融 / 经济 / 法语", tags: ["麦吉尔博士经历", "会计硕士", "多语种"], scarcity: "跨学科导师", cases: "2018年曾教授澳大利亚VCE项目，覆盖数学、物理、金融、商务四门课程。", experience: "加拿大麦吉尔大学博士学习经历，中国财政部科研院会计硕士，中国人民大学金融学士；精通英语、粤语、国语，熟练法语，初步西班牙语。" },
+      { name: "蔡老师", initial: "蔡", subject: "香港线下 · DSE中文 / IB中文 / 小学中文", tags: ["港大中文", "DSE写作5**", "PSC 90.5"], scarcity: "香港中文专科", cases: "教授学生过百人，覆盖张祝珊英文中学、拔萃女书院、圣保罗学校等；多名学生三个月内明显提分，曾有学生呈分试提升15分。", experience: "香港大学中国语言文学及中国历史文化背景，现任中学课后中文导师、幼稚园普通话专科导师、补习社中文专科导师，擅长普教中及中文写作。" },
+      { name: "姜老师", initial: "姜", subject: "深圳线下 · 数学 / 国际竞赛 / 国际学校备考", tags: ["1-12年级", "AMC/BMO", "贝赛思备考"], scarcity: "数学竞赛可约", cases: "覆盖公立体系1-12年级数学、深国交/展华/贝赛思/培侨等国际学校备考，以及MAP、A-Level、DSE、AP数学。", experience: "擅长AMC8/10/12、BMO、Euclid、COMC、SMC、袋鼠数学、新加坡奥数、澳洲AMC等国际数学竞赛辅导。" },
+      { name: "计算机萧老师", initial: "萧", subject: "深圳线下 · A-Level / IGCSE / AP / IB 计算机", tags: ["国科大硕士", "教师资格证", "名校案例"], scarcity: "计算机稀缺导师", cases: "学生考入帝国理工、剑桥、新加坡国立、多伦多大学、华盛顿大学等；有学生获新加坡本科四年全额奖学金及信息学奥赛铜奖。", experience: "中国科学院大学硕士，持高级中学信息技术教师资格证。曾任全国头部国际学校高中双语计算机科学教师，熟悉Python、Java、计算机竞赛与考级教研。" },
+      { name: "Carina老师", initial: "C", subject: "线上授课 · A-Level / AP 化学 / UKChO / CCC / USNCO", tags: ["北大化学博士", "19年教龄", "竞赛金奖"], scarcity: "线上化学专家", cases: "从2020年指导UKChO、C3L6、CCC等化学竞赛，获金奖人数约占所带学生70%；2024年带培侨信义学生参赛获4枚金奖、2枚特等奖。", experience: "北京大学化学博士，曾任北京人大附中国际课程中心化学老师18年，熟悉IGCSE、A-Level、IB、AP化学及实验考试教学，自研系统讲义和分类题。" },
+      { name: "VV老师", initial: "V", subject: "线上授课 · AP统计 / AP微积分 / A-Level计算机数学", tags: ["AP 3000h+", "计算机强", "全考试局"], scarcity: "线上计算机数学", cases: "AP教授课时3000小时以上，长期教授APCSA、APCSP、AP统计、AP微积分及A-Level计算机、数学。", experience: "澳大利亚国立大学背景，曾在国内知名国际教育机构任教，熟悉A-Level计算机全考试局全科及Edexcel/CAIE数学体系。" },
+      { name: "Alyssa老师", initial: "A", subject: "线上授课 · AP经济 / AP微积分 / A-Level数学 / 会计", tags: ["雅思8分", "CFA", "AP 5分"], scarcity: "线上经济数学", cases: "A-Level 90%以上学生获得A以上成绩，AP几乎全部学生获得5分。", experience: "英国QS前100本科一等荣誉学位，六年海外留学工作经历，曾任职国际学校与投资银行，擅长把经济、数学知识与现实案例结合。" },
+      { name: "CiCi老师", initial: "C", subject: "线上授课 · A-Level / AP / IB 物理计算机数学", tags: ["港大硕士", "帝国理工博士", "A*率90%"], scarcity: "英国时区可约", cases: "所带学生90%为A*，擅长帮助学生融会贯通知识点。", experience: "本科中科大电子信息，硕士香港大学电子电气，目前帝国理工电子电气博士在读；三年助教经验，近四年机构代课经验，北京时间和英国时间均可。" },
+      { name: "吴老师", initial: "吴", subject: "线上授课 · AP / A-Level / IG / IB 地理与Essay", tags: ["雅思8分", "写作7.5", "SSCI论文"], scarcity: "地理Essay专项", cases: "擅长AP、A-Level、IG、IB地理类辅导，尤其擅长Essay辅导。", experience: "南京师范大学本科，加拿大滑铁卢大学交流，乌特勒支大学人文地理硕士；发表SSCI英文论文及中文期刊论文，拥有全球20+国家经历。" },
+      { name: "徐老师", initial: "徐", subject: "线上授课 · A-Level / AMC / AIME / AP / IB / STEP / MAT 数学", tags: ["经济博士", "高联一等奖", "985任教"], scarcity: "竞赛数学名师", cases: "长期提供一对一定制化数学学习方案，覆盖A-Level、AMC、AIME、STEP、MAT、BMO、欧几里得等课程与竞赛。", experience: "纽约州立大学经济博士，复旦大学数学本科、经济硕士；复旦九章数学一等奖、全国高联数学一等奖，曾在985高校金融统计系任教。" },
+      { name: "Leo老师", initial: "L", subject: "线上授课 · A-Level数学 / STEP / TUMA", tags: ["UCL一等学位", "1000+小时", "50+学生"], scarcity: "A-Level数学冲刺", cases: "所带学生约50%零基础稳定达A，30%从C段提升至B或A，20%冲刺A*，多人获得名校预录或录取。", experience: "UCL数学与统计专业本硕一等学位，A-Level数学596分、进阶数学576分，擅长精准诊断、错题整理和数学思维框架搭建。" },
+      { name: "陈老师（计算机）", initial: "陈", subject: "线上授课 · AP / IG / AS / A-Level计算机 / USACO", tags: ["8年教龄", "A率80%", "自研讲义"], scarcity: "计算机竞赛可约", cases: "所带AP学生不低于4分，A-Level计算机A率80%。", experience: "本科南京航空航天大学，硕士台湾清华大学动机系；2018年进入国际教育领域，长期教授AP计算机和A-Level计算机，自研全套课程讲义。" },
+      { name: "Blair李老师", initial: "B", subject: "线上授课 · A-Level / AP 化学 / CCC / CCO / UKChO", tags: ["美化学硕士", "8年实验室", "竞赛化学"], scarcity: "化学竞赛可约", cases: "具备A-Level/AP化学及CCC、CCO、UKChO等竞赛辅导经验，擅长从现有知识推理更高阶段内容。", experience: "美国迈阿密大学化学硕士、天津大学药物化学硕士、化学教育学士，8年美国本科课堂及实验室教学经验，风格随和且重视理科思维。" },
+      { name: "Carrie老师", initial: "C", subject: "线上授课 · A-Level数学 / Pre-DP数学", tags: ["应用数学硕士", "6年教龄", "国际学校"], scarcity: "A-Level数学可约", cases: "负责跨年级双语数学分层教学、A-Level IG及AS课程设计、校内考试及入学考试制卷。", experience: "莫斯科大学应用数学硕士、福州大学基础数学本科，任职江苏某国际学校6年，兼任Pre-DP课程老师。" },
+      { name: "Chris老师", initial: "C", subject: "线上授课 · IG / AP / IB / A-Level数学", tags: ["6年教龄", "目标达成91%", "风趣清晰"], scarcity: "数学提分可约", cases: "学员目标达成率高达91%，擅长短期解决不同分数段学生的能力短板。", experience: "上海财经大学硕士，主教IG/AP/IB/A-Level数学、进阶数学、Pre-Calculus、Calc AB/BC，熟悉考官出题思路。" },
+      { name: "Echo老师", initial: "E", subject: "线上授课 · IG / A-Level经济数学商务会计 / AP IB经济", tags: ["剑桥背景", "G5案例", "6年教龄"], scarcity: "经济商科可约", cases: "五年间辅导十余名学生以高绩点申请英国G5，其中两名进入剑桥经济系，一名进入剑桥数学系；曾辅导零基础学生拿到A。", experience: "剑桥大学金融与经济学背景，埃塞克斯大学经济学本科专业第一毕业，授课注重输入输出、批判性思维和生活案例解释。" },
+      { name: "Sun老师", initial: "S", subject: "线上授课 · A-Level数学 / AP微积分 / AMC", tags: ["国际学校8年", "AMC竞赛", "Pre-Calculus"], scarcity: "数学竞赛可约", cases: "覆盖A-Level数学、Pre-Calculus、AP微积分AB/BC、AMC8/10/12、CIMC/CSMC、澳洲数学竞赛等。", experience: "北京某双语国际学校工作近8年，CUGB本科及硕士背景，擅长国际数学课程与竞赛辅导。" },
+      { name: "Griez老师", initial: "G", subject: "线上授课 · IG / A-Level数学高数物理化学 / 升学规划", tags: ["南洋理工", "全额奖学金", "北大交换"], scarcity: "理科全能可约", cases: "A-Level数学、高数、物理、化学、中文实考A*；拥有3年以上AL/IGCSE辅导经验和2年升学规划经验。", experience: "南洋理工大学材料工程本博连读，北京大学工程学院交换生，可授CAIE/Edexcel多科、大学材料科学课程、Python/CAD及全球本科申请规划。" },
+      { name: "Gege老师", initial: "G", subject: "线上授课 · IG / A-Level / IB / AP 数学物理", tags: ["6年经验", "物理7分率90%", "A*百人"], scarcity: "物理数学高分", cases: "帮助10+名A-Level物理学生卷面满分，IB物理7分率90%，带出超百位A-Level数学A*学生，物理碗金奖3人、BPhO金奖3人。", experience: "香港城市大学电子信息工程硕士，物理竞赛华东赛区二等奖，6年以上出国课程培训经验，保持0差评记录。" },
+      { name: "Grace老师", initial: "G", subject: "线上授课 · IB / A-Level / IGCSE社会学 / AP人文地理", tags: ["LSE硕士", "雅思8分", "剑桥改卷"], scarcity: "社会科学专项", cases: "多年国际初高中及海外大学课程辅导经验，熟悉近5年真题趋势，通过剑桥考试局改卷者认证。", experience: "伦敦政治经济学院社会政策硕士，香港本科社会政策背景，擅长社会学、全球视野、AP Human Geography、Government and Politics、论文和文书指导。" },
+      { name: "Jasper老师", initial: "J", subject: "线上授课 · IGCSE / A-Level / AP 生物 / IBO / BBO", tags: ["曼大硕士", "10年教龄", "竞赛金奖"], scarcity: "生物竞赛名师", cases: "IGCSE历届学生获全A*/A，AS Level获全A/B；指导学生获得2021-2024 IBO、BBO等多项金奖和全球金奖。", experience: "曼大硕士，拥有国际学校和生物竞赛培训经验，专注IGCSE、A-Level、AP生物，重视科学思维和实验探究能力。" },
+      { name: "王老师（数理）", initial: "王", subject: "线上授课 · AP / A-Level / IB 数学物理 / AMC / AIME", tags: ["14年经验", "AP 5分率93%+", "双语全英"], scarcity: "数理高分可约", cases: "AP Calculus 5分率93%以上、4分及以上98%以上；AP Physics 1四分及以上98%以上，A-Level和IB数学物理高分案例多。", experience: "美国百强大学机械工程硕士，14年A-Level、AP、IB、SAT、ACT、IG、AMC、AIME、Physics Bowl等教学经验，可全英文和双语教学。" },
+      { name: "Felisa老师", initial: "F", subject: "线上授课 · AP / A-Level经济 / CIE / AQA", tags: ["北大金融", "雅思8分", "提分快"], scarcity: "经济Essay可约", cases: "CIE提分案例包括1个月内从C提升到A、从D提升到B。", experience: "北京大学金融系，雅思8分、英语专八；自研课件、讲义、Essay背诵讲义与范文，具备投行、咨询、证券、VC等9段实习经历，可做泛商科规划。" },
+      { name: "Simon老师", initial: "S", subject: "线上授课 · A-Level会计 / ACCA / AP IB A-Level经济", tags: ["南洋理工MBA", "2000+课时", "A*/A率90%"], scarcity: "会计经济可约", cases: "累计教授2000+课时，学生A*/A率90%，培养出UCL、港三、新二等名校录取者。", experience: "暨南大学会计学学士，南洋理工大学商学院MBA，ACCA通过9门核心课程，GRE330、雅思7分，曾任新加坡风投机构分析师。" },
+      { name: "Felix老师", initial: "F", subject: "线上授课 · AP / A-Level / IGCSE 经济学", tags: ["港前三金融硕士", "6年经验", "经济5分"], scarcity: "经济高分可约", cases: "每年帮助多位AP学生获得经济5分，甚至宏观微观双5分；多位A-Level和IG学生有效提分至A以上。", experience: "港前三金融硕士，六年以上海外名校本科及国际课程经济学教学经验，擅长以通俗方式帮助学生理解学术理论并过渡到大学学习。" },
+      { name: "王老师（西班牙）", initial: "王", subject: "线上授课 · IG / A-Level数学 / IGCSE化学", tags: ["高校数学教师", "访问学者", "西班牙在线"], scarcity: "欧洲时区可约", cases: "长期辅导两个就读英制国际学校的孩子，在本地机构有大班课和线上一对一经验。", experience: "2005年西北农林科技大学硕士毕业后任教高等数学多年，曾为美国密歇根州立大学访问学者，主要授A-Level数学、IGCSE数学和化学。" },
+      { name: "Jacqueline老师", initial: "J", subject: "线上授课 · AP / A-Level / IG / IB 生物 / BBO / USABO / ASOB", tags: ["生物博士", "中科院老师", "AP 5分"], scarcity: "生物竞赛可约", cases: "Edexcel、CAIE IGCSE生物综合A*率80%；AP生物学生均取得5分；培训BBO、USABO、ASOB竞赛学生。", experience: "生物学博士，高校5年教龄，现任中科院老师，自2021年以来培训数十位国际高中学生，具有丰富国际课程经验。" },
+      { name: "Lu老师", initial: "L", subject: "线上授课 · IGCSE / A-Level数学 / AP微积分 / IB数学", tags: ["8年教龄", "A*率80%", "提分快"], scarcity: "线上数学化学", cases: "所带班级A*率可达80%；基础薄弱但态度端正学生可从E提升到A，学生申请到Oxford、Cambridge、IC、LSE、UCL、NYU等。", experience: "武汉大学化学本科、四川大学环境科学及化学教育硕士，擅长总结大纲和真题考点，自编个人讲义；也带UKChO、C3L6、ASOC、JCCO、CCC等化学竞赛。" },
+      { name: "林老师Tian", initial: "林", subject: "线上授课 · IGCSE / A-Level数学 / AP微积分 / IB数学", tags: ["开普敦数学硕士", "8年教龄", "纯数学"], scarcity: "高阶数学可约", cases: "曾在开普敦大学有3年讲师及7年Tutor经验，教授单元微积分、多元微积分、线性代数、实分析、泛函分析、随机分析。", experience: "开普敦大学数学与统计学士、数学硕士，七年纯数学学习与研究经历，曾获帝国理工数学与金融硕士Offer，讲解逻辑清晰且重视自主思考。" },
+      { name: "李老师Yvonne", initial: "李", subject: "线上授课 · A-Level物理 / A-Level数学", tags: ["天津大学硕士", "8年教龄", "A率90%+"], scarcity: "物理数学可约", cases: "带出过数学力学M1全球最高分，多名学生考入G5和香港名校，得A率超过90%。", experience: "天津大学硕士，8年A-Level数学物理教学经验，物理主带CIE、AQA考试局，数学可带CIE、Edexcel，擅长专题训练和瓶颈突破。" },
+      { name: "Miranda梅老师", initial: "M", subject: "线上授课 · A-Level / IB / AP 经济商务 / 大学商科", tags: ["8年经验", "TESOL", "满意度98%"], scarcity: "经济商科研究", cases: "大学宏微观等80+，A-Level A-，IB 6/7，AP 4/5，92%+学生满意度98%+。", experience: "武汉大学本硕，海外留学经验，8年以上线上一对一授课经验，擅长经济、商务、管理类科目和大学宏微观，重视实际生活应用和研究能力。" },
+      { name: "Wendy Wu", initial: "W", subject: "线上授课 · IG / A-Level经济商科会计 / EPQ", tags: ["7000+小时", "A/A* 80%+", "G5案例"], scarcity: "商科EPQ可约", cases: "帮助80%以上IG、A-Level学生和90%以上全日制学生获得A及A*，教出经济商科满分学生，EPQ全部学生A或A*。", experience: "墨尔本大学会计学和金融学硕士，6年教学经验，累计授课7000小时以上，帮助学生申请UCL、LSE、ICL等G5及曼大等Top50高校。" },
+      { name: "Jeff老师", initial: "J", subject: "线上授课 · A-Level数学", tags: ["苏黎世大学硕士", "ETH科研助理", "国际学校"], scarcity: "A-Level数学可约", cases: "现任上海头部国际学校A-Level数学教师，大学期间有多段家教经历，学生覆盖小学到高考备考。", experience: "瑞士苏黎世大学信息科学硕士，曾在苏黎世联邦理工大学担任科研助理，理工科基础扎实。" },
+      { name: "Luffy老师", initial: "L", subject: "线上授课 · A-Level / IGCSE 物理化学生物", tags: ["西北大学博士", "A率90%", "全英授课"], scarcity: "理化生全科", cases: "A-Level/IGCSE理化生教培经验2年，A率90%，A*率70%。", experience: "本科和博士毕业于美国西北大学，机械工程及材料工程与计算模拟背景，可全英授课，也可指导学生科研项目。" },
+      { name: "卢老师（A-Level数学）", initial: "卢", subject: "线上授课 · A-Level数学", tags: ["同济硕士", "光华剑桥", "教师资格证"], scarcity: "数学短期突破", cases: "擅长二次函数、三角函数、力学、微分、积分和概率统计，帮助学生短期突破。", experience: "同济大学硕士，3年教育行业经验，曾任教上海光华剑桥国际高中，持高中数学教师资格证、上海中级口译和雅思6.5。" },
+      { name: "Leon老师", initial: "L", subject: "线上授课 · IG / A-Level计算机", tags: ["高级软件工程师", "ASU硕士", "项目实战"], scarcity: "计算机项目可约", cases: "2024年起担任IG/A-Level双语计算机教师，负责AQA考试局计算机教学、考前训练、答疑和作业反馈。", experience: "亚利桑那州立大学计算机技术硕士，华东师范大学软件工程本科，2015-2024高级软件工程师，拥有多家500强企业项目经验。" },
+      { name: "Joe老师", initial: "J", subject: "线上授课 · IG / A-Level物理", tags: ["UCL本硕", "6年教龄", "百人A*/A"], scarcity: "物理高分可约", cases: "助力超百名学生在A-Level物理考试中斩获A*/A成绩，并进入梦想院校。", experience: "在英国完成A-Level学习后，于UCL取得机械工程本硕学位，深耕国际教育6年以上，曾任大型留学机构和国际学校物理教师。" },
+      { name: "Mulan杨老师", initial: "M", subject: "线上授课 · AP微积分 / AP统计 / AP预备微积分", tags: ["教研组长", "2000+小时", "5分率76.84%"], scarcity: "AP数学统计", cases: "2024年AP学员综合5分率76.84%（73/95），教授学员400+，授课时长2000+小时。", experience: "南京审计大学金融学本科，3年AP课程授课经历，某头部留学机构AP组数学科目教研组长，同时负责面试和师训，风格逻辑清晰、亲和关切。" }
+    ];
+
+    const teacherGrid = document.getElementById("teacherGrid");
+    const emptyState = document.getElementById("emptyState");
+    const teacherSearch = document.getElementById("teacherSearch");
+    const heroSearch = document.getElementById("heroSearch");
+    const teacherModal = document.getElementById("teacherModal");
+    const leadModal = document.getElementById("leadModal");
+    const payModal = document.getElementById("payModal");
+    const heroTeacherCount = document.getElementById("heroTeacherCount");
+
+    heroTeacherCount.textContent = teachers.length;
+
+    function renderTeachers(keyword = "") {
+      const key = keyword.trim().toLowerCase();
+      const filtered = teachers.filter((teacher) => {
+        const text = [teacher.name, teacher.subject, teacher.tags.join(" "), teacher.scarcity, teacher.cases, teacher.experience].join(" ").toLowerCase();
+        return text.includes(key);
+      });
+
+      teacherGrid.innerHTML = filtered.map((teacher) => `
+        <article class="teacher-card" data-index="${teachers.indexOf(teacher)}">
+          <div>
+            <div class="teacher-top">
+              <div><h3>${teacher.name}</h3><p>${teacher.subject}</p></div>
+              <div class="avatar">${teacher.initial}</div>
+            </div>
+            <div class="tags">
+              ${teacher.tags.map(tag => `<span class="tag">${tag}</span>`).join("")}
+              <span class="tag tag-hot">${teacher.scarcity}</span>
+            </div>
+          </div>
+          <div class="teacher-foot"><span>查看详情</span><span class="score">高匹配</span></div>
+        </article>
+      `).join("");
+
+      emptyState.classList.toggle("active", filtered.length === 0);
+    }
+
+    function openModal(modal) {
+      document.querySelectorAll(".modal-mask").forEach(item => item.classList.remove("active"));
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModals() {
+      document.querySelectorAll(".modal-mask").forEach(item => item.classList.remove("active"));
+      document.body.style.overflow = "";
+    }
+
+    function openTeacherDetail(index) {
+      const teacher = teachers[index];
+      document.getElementById("modalTeacherName").textContent = teacher.name;
+      document.getElementById("modalTeacherTags").innerHTML = teacher.tags.map(tag => `<span class="tag">${tag}</span>`).join("") + `<span class="tag tag-hot">${teacher.scarcity}</span>`;
+      document.getElementById("modalCases").textContent = teacher.cases;
+      document.getElementById("modalExperience").textContent = teacher.experience;
+      openModal(teacherModal);
+    }
+
+    teacherGrid.addEventListener("click", (event) => {
+      const card = event.target.closest(".teacher-card");
+      if (card) openTeacherDetail(Number(card.dataset.index));
+    });
+
+    teacherSearch.addEventListener("input", (event) => renderTeachers(event.target.value));
+
+    document.getElementById("heroSearchBtn").addEventListener("click", () => {
+      const value = heroSearch.value.trim();
+      teacherSearch.value = value;
+      renderTeachers(value);
+      document.getElementById("teachers").scrollIntoView({ behavior: "smooth" });
+    });
+
+    heroSearch.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") document.getElementById("heroSearchBtn").click();
+    });
+
+    document.querySelectorAll("[data-lead]").forEach(button => {
+      button.addEventListener("click", () => {
+        document.getElementById("successNote").classList.remove("active");
+        openModal(leadModal);
+      });
+    });
+
+    document.getElementById("unlockBtn").addEventListener("click", () => openModal(payModal));
+
+    document.getElementById("mockPayBtn").addEventListener("click", () => {
+      const btn = document.getElementById("mockPayBtn");
+      btn.textContent = "支付处理中...";
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = "模拟支付";
+        btn.disabled = false;
+        document.getElementById("successNote").classList.remove("active");
+        openModal(leadModal);
+      }, 900);
+    });
+
+    document.querySelectorAll("[data-close]").forEach(button => button.addEventListener("click", closeModals));
+    document.querySelectorAll(".modal-mask").forEach(mask => {
+      mask.addEventListener("click", (event) => {
+        if (event.target === mask) closeModals();
+      });
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeModals();
+    });
+
+    document.getElementById("leadForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const wechat = document.getElementById("wechat").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const wechatError = document.getElementById("wechatError");
+      const phoneError = document.getElementById("phoneError");
+      const successNote = document.getElementById("successNote");
+      wechatError.textContent = "";
+      phoneError.textContent = "";
+      successNote.classList.remove("active");
+
+      let valid = true;
+      if (!wechat && !phone) {
+        wechatError.textContent = "请至少填写微信或手机中的一项。";
+        valid = false;
+      }
+      if (phone && !/^1[3-9]\d{9}$/.test(phone)) {
+        phoneError.textContent = "请输入有效的中国大陆手机号。";
+        valid = false;
+      }
+      if (wechat && !/^[a-zA-Z][-_a-zA-Z0-9]{5,19}$/.test(wechat)) {
+        wechatError.textContent = "微信号通常为6-20位字母、数字、下划线或减号，并以字母开头。";
+        valid = false;
+      }
+      if (!valid) return;
+
+      successNote.classList.add("active");
+      event.target.reset();
+      setTimeout(closeModals, 1200);
+    });
+
+    renderTeachers();
+  </script>
+</body>
+</html>
